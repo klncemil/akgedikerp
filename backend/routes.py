@@ -479,7 +479,7 @@ REPORT_CONFIG = {
 
 async def fetch_report_rows(report):
     if report == "stok":
-        return await stok_durumu.__wrapped__(user=None) if False else await _stok_rows()
+        return await _stok_rows()
     if report == "cari-borc":
         return await _cari_borc_rows()
     docs = await db[report].find().sort("created_at", -1).to_list(20000)

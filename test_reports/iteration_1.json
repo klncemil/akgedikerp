@@ -1,0 +1,45 @@
+{
+  "summary": "Fresh build first e2e test. Executed 25 pytest backend tests (100% pass) covering auth (login OK / wrong pw / me), full relational flow (cari -> bahçe with denormalized bag_sahibi -> hasat with computed net_kg/toplam_alis_tutari/toplam_maliyet -> odeme reducing borç), müşteri/satış/tahsilat, cari-hesap & müşteri-hesap aggregation, stok auto-movements from hasat/satis, giderler/nakliye, dashboard KPIs, kâr formula, and Excel+PDF exports for cariler/hasatlar/satislar/stok/cari-borc. Frontend Playwright tests exercised: login (both wrong+right password with Turkish error), unauth /dashboard redirect to /login, Cari CRUD (kod C0xx generated), Bahçe CRUD with cari-relation + denormalized bag_sahibi visible in table, Günlük Hasat cascading (cari->bahçe filter, auto-fill bağ sahibi/köy/mevki/üzüm çeşidi, live compute Net Kg=1900 and Toplam Maliyet=47.800), Kantar & Alışlar screens read-only (no add-new button), Stok showing çeşit with correct kg, Ödeme reduces cari borç from 47.500 to 37.500 ₺, Cari detail dialog with Bahçe/Hasat/Ödeme tabs, Müşteri+Satış (500kg*40=20.000 ₺ computed), Raporlar page shows Gerçek Kâr Analizi with correct math (20.000 - 47.800 - 0 - 500 = -28.300). Dashboard KPIs & charts render with data.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/export/{report}", "issue": "fetch_report_rows uses awkward dead-code pattern `await stok_durumu.__wrapped__(user=None) if False else await _stok_rows()`; simplify to `return await _stok_rows()`."},
+      {"endpoint": "/api/hasatlar (update)", "issue": "register_crud after_update lambda passes coroutine `db.stok_hareketleri.delete_many(...)` as after_delete without await; delete_many is called but not awaited. Same for satislar after_delete. Currently 'works' because motor returns a coroutine that Python garbage-collects with the operation queued, but this is unsafe and will drop mongo ops under load. Use `async def` wrappers."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Raporlar page (custom cards)", "issue": "Excel/PDF download icons on Raporlar cards do NOT have data-testid attributes (only CrudModule pages do). Downloads work via user click but not automatable.", "selector": "div card icons on /raporlar", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "All CRUD dialogs with date fields (Ödeme, Satış, Tahsilat, Gider, Nakliye, Hasat form)", "issues": ["Uses native browser date input (mm/dd/yyyy placeholder) instead of shadcn Calendar/DatePicker component — inconsistent with dark corporate theme and locale-unfriendly (US format)."]},
+      {"screen": "All Dialog components (CrudModule + Cari detail)", "issues": ["a11y console warning: `Missing Description or aria-describedby={undefined} for {DialogContent}`. Add DialogDescription for screen readers."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Add data-testid attributes (e.g., report-<key>-excel / report-<key>-pdf) to Raporlar page download icons to enable UI automation.",
+    "Replace native <input type='date'> with shadcn Calendar/Popover date-picker for Turkish locale UX consistency.",
+    "Fix routes.py: wrap non-awaited motor coroutines in after_update/after_delete lambdas into proper async functions (also drop dead code in fetch_report_rows).",
+    "Add DialogDescription (or aria-describedby) to Dialog/AlertDialog usages to remove a11y warnings."
+  ],
+  "critical_code_review_comments": [
+    "routes.py after_update/after_delete lambdas return coroutines that are never awaited (`db.stok_hareketleri.delete_many(...)`) — potential unreliable stok sync on hasat/satis update or delete.",
+    "server.py: FastAPI @app.on_event('startup'/'shutdown') is deprecated (FastAPI 0.109+); prefer lifespan context manager.",
+    "auth.py seed_admin idempotency correctly updates password when it changes (verified via env). Good.",
+    "CORSMiddleware uses allow_origin_regex='.*' with allow_credentials=True — this is actually not spec-compliant (browsers require explicit origin, not wildcard, with credentials). Starlette regex form works, but consider restricting to specific origins in prod.",
+    "Kâr computation in /api/kar uses toplam_maliyet (which already includes hasat işçilik/nakliye/diğer_gider) AND separately adds satis nakliye/diger_gider — correct. Verified: 20000 - 47800 - 0 (satış gider) - 500 (işletme) = -28300 matches UI.",
+    "GunlukTakip.jsx net_kg is computed client-side and sent as `net_kg`; backend prep_hasat overrides only when net==0, so client-provided net stays. Consistent.",
+    "database.py oid() silently returns non-ObjectId strings — could hide bad IDs; consider raising 400.",
+    "entities.js field `uzum_cesidi` for bahce is a select; predefined list uses 'Sultani Çekirdeksiz' not 'Sultaniye' as review request mentioned — no bug, just naming."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "100% (25/25)", "frontend": "100% (all reviewed flows pass)"},
+  "test_credentials": "cemil63@gmail.com / akgedik2026 (verified working)",
+  "seed_data_creation": "Backend test suite creates and deletes TEST_* records within the same run. Frontend test left behind: UITEST3/UITEST4 cari, bahçe, hasat records, one ödeme (10.000₺), UITEST5 müşteri + one satış (20.000₺). These can be manually cleaned via UI if desired.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Full happy-path verified. Backend fully green. Remaining polish items are cosmetic (date-picker, testids on Raporlar cards, a11y). Sequential kod counters (C/B/H/O/S) increment across runs — do not assume C001 exists; test suite reads back its own kod after POST. Backend pytest must be run with `-o addopts='-n 0'` because pytest.ini enforces xdist loadscope which is fine for parallel-safe tests, but our TestRelationalFlow depends on shared ctx fixture and must run serially.",
+  "rca of the issue": "N/A — no blocker bugs found. Two minor code-quality issues (unawaited motor coroutines in CRUD after_update/after_delete, native date pickers) documented above."
+}
