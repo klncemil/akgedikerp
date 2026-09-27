@@ -1,0 +1,310 @@
+{
+  "app_name": "AKGEDİK ÜZÜM YÖNETİM SİSTEMİ",
+  "app_type": "hybrid_fullstack ERP dashboard admin panel",
+  "language": "tr",
+  "theme_mode": "dark",
+  "branding": {
+    "company_name": "Akgedik Gıda A.Ş.",
+    "system_title": "Akgedik Üzüm Yönetim Sistemi",
+    "subtitle": "Kurumsal Bağ, Hasat, Kantar, Stok ve Cari Ticaret ERP Paneli",
+    "logo_badge": "AKGEDİK ERP",
+    "tagline": "Alaşehir & Manisa Bölgesi Dijital Üzüm Ticareti Yönetimi"
+  },
+  "typography": {
+    "font_family_headings": "Outfit, Manrope, sans-serif",
+    "font_family_body": "Inter, IBM Plex Sans, sans-serif",
+    "font_family_numbers": "tabular-nums, JetBrains Mono, monospace",
+    "heading_h1": "text-3xl font-bold tracking-tight text-slate-100 md:text-4xl",
+    "heading_h2": "text-2xl font-semibold tracking-tight text-slate-100",
+    "heading_h3": "text-xl font-medium text-slate-200",
+    "section_title": "text-lg font-semibold text-slate-100 flex items-center gap-2",
+    "table_header": "text-xs font-semibold text-slate-400 uppercase tracking-wider bg-slate-900/80"
+  },
+  "colors": {
+    "background_base": "#0B0F17",
+    "surface_card": "#111827",
+    "surface_elevated": "#1F2937",
+    "border_subtle": "#374151",
+    "border_active": "#4B5563",
+    "primary_accent": "#8B1E3F",
+    "primary_hover": "#9D174D",
+    "text_main": "#F3F4F6",
+    "text_muted": "#9CA3AF",
+    "text_dark_accent": "#E5E7EB",
+    "semantic": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "danger": "#EF4444",
+      "info": "#06B6D4",
+      "grape_sultani": "#10B981",
+      "grape_rezaki": "#F59E0B",
+      "grape_crimson": "#EC4899",
+      "grape_alphonse": "#8B5CF6"
+    }
+  },
+  "navigation": {
+    "sidebar_width": "w-64",
+    "menu_items": [
+      {
+        "id": "dashboard",
+        "title": "Gösterge Paneli",
+        "icon": "LayoutDashboard",
+        "path": "/dashboard"
+      },
+      {
+        "id": "cari",
+        "title": "Cari Kayıtları",
+        "icon": "Users",
+        "path": "/cari"
+      },
+      {
+        "id": "bahceler",
+        "title": "Bahçeler & Bağlar",
+        "icon": "Trees",
+        "path": "/bahceler"
+      },
+      {
+        "id": "gunluk-takip",
+        "title": "Günlük Hasat Takibi",
+        "icon": "CalendarCheck",
+        "path": "/gunluk-takip"
+      },
+      {
+        "id": "kantar",
+        "title": "Kantar İşlemleri",
+        "icon": "Scale",
+        "path": "/kantar"
+      },
+      {
+        "id": "alislar",
+        "title": "Üzüm Alışları",
+        "icon": "ShoppingBag",
+        "path": "/alislar"
+      },
+      {
+        "id": "odemeler",
+        "title": "Müstahsil Ödemeleri",
+        "icon": "Wallet",
+        "path": "/odemeler"
+      },
+      {
+        "id": "nakliye",
+        "title": "Nakliye & Lojistik",
+        "icon": "Truck",
+        "path": "/nakliye"
+      },
+      {
+        "id": "stok",
+        "title": "Depo & Soğuk Hava Stok",
+        "icon": "Boxes",
+        "path": "/stok"
+      },
+      {
+        "id": "musteriler",
+        "title": "Müşteriler",
+        "icon": "Building2",
+        "path": "/musteriler"
+      },
+      {
+        "id": "satislar",
+        "title": "Toptan Satışlar",
+        "icon": "TrendingUp",
+        "path": "/satislar"
+      },
+      {
+        "id": "tahsilatlar",
+        "title": "Tahsilatlar",
+        "icon": "Receipt",
+        "path": "/tahsilatlar"
+      },
+      {
+        "id": "giderler",
+        "title": "İşletme Giderleri",
+        "icon": "CircleDollarSign",
+        "path": "/giderler"
+      },
+      {
+        "id": "raporlar",
+        "title": "Raporlar & Analizler",
+        "icon": "FileSpreadsheet",
+        "path": "/raporlar"
+      },
+      {
+        "id": "ayarlar",
+        "title": "Sistem Ayarları",
+        "icon": "Settings",
+        "path": "/ayarlar"
+      }
+    ]
+  },
+  "dashboard_kpis": [
+    {
+      "key": "toplam_hasat_kg",
+      "label": "Bugünkü Hasat Miktarı",
+      "unit": "kg",
+      "icon": "Wheat",
+      "trend": "+12.4%",
+      "color": "emerald"
+    },
+    {
+      "key": "toplam_alis_tutari",
+      "label": "Toplam Üzüm Alışı",
+      "unit": "₺",
+      "icon": "ShoppingCart",
+      "trend": "+8.1%",
+      "color": "rose"
+    },
+    {
+      "key": "aktif_kantar_fisi",
+      "label": "Giriş Yapan Kantar Fişi",
+      "unit": "Adet",
+      "icon": "Scale",
+      "trend": "Bugün 28 Fiş",
+      "color": "amber"
+    },
+    {
+      "key": "toplam_satis_ciro",
+      "label": "Aylık Toptan Ciro",
+      "unit": "₺",
+      "icon": "TrendingUp",
+      "trend": "+18.5%",
+      "color": "indigo"
+    },
+    {
+      "key": "net_kar_marji",
+      "label": "Net Tahmini Kâr",
+      "unit": "₺",
+      "icon": "Coins",
+      "trend": "%24.2 Marj",
+      "color": "cyan"
+    },
+    {
+      "key": "soğuk_hava_stok",
+      "label": "Soğuk Hava Depo Stok",
+      "unit": "Palet / Ton",
+      "icon": "Snowflake",
+      "trend": "Kapasite %78",
+      "color": "sky"
+    }
+  ],
+  "charts_configuration": {
+    "daily_harvest_chart": {
+      "type": "Bar + Line Hybrid",
+      "title": "Günlük Hasat Miktarı ve Sefer Sayısı (kg)",
+      "dataKeyX": "tarih",
+      "series": [
+        {
+          "dataKey": "miktar_kg",
+          "name": "Hasat (kg)",
+          "color": "#10B981"
+        },
+        {
+          "dataKey": "sefer_sayisi",
+          "name": "Kamyon Sefer",
+          "color": "#F59E0B"
+        }
+      ]
+    },
+    "garden_yield_chart": {
+      "type": "Donut",
+      "title": "Bahçe Bazlı Rekolte Dağılımı (Ton)",
+      "colors": [
+        "#10B981",
+        "#8B1E3F",
+        "#F59E0B",
+        "#3B82F6",
+        "#8B5CF6",
+        "#EC4899"
+      ]
+    },
+    "grape_variety_chart": {
+      "type": "Pie",
+      "title": "Üzüm Çeşidi Dağılımı",
+      "varieties": [
+        "Sultani Çekirdeksiz",
+        "Rezaki",
+        "Crimson Seedless",
+        "Alphonse Lavallée"
+      ]
+    },
+    "buy_sell_comparison_chart": {
+      "type": "Double Bar",
+      "title": "Haftalık Alış vs Satış Karşılaştırması (₺)",
+      "series": [
+        {
+          "key": "alis_tutari",
+          "label": "Müstahsil Alış",
+          "color": "#9D174D"
+        },
+        {
+          "key": "satis_tutari",
+          "label": "Müşteri Satış",
+          "color": "#10B981"
+        }
+      ]
+    },
+    "monthly_profit_chart": {
+      "type": "Area Chart",
+      "title": "Aylık Ciro ve Net Kâr Gelişimi (₺)",
+      "colorGradient": [
+        "#10B981",
+        "#059669"
+      ]
+    },
+    "debt_distribution_chart": {
+      "type": "Stacked Bar",
+      "title": "Cari Borç ve Alacak Yaşlandırma Dağılımı",
+      "colors": {
+        "müstahsil_borcları": "#EF4444",
+        "musteri_alacaklari": "#10B981"
+      }
+    }
+  },
+  "interactive_flows": {
+    "gunluk_takip_cascading_dropdown": {
+      "step_1": "Cari Seçimi (Örn: Salihli Üretici Kooperatifi)",
+      "step_2": "Cari'ye Bağlı Bahçe Seçimi (Örn: Yeşilyurt Bağ Sahası - 45 Dönüm)",
+      "step_3": "Parsel / Üzüm Türü (Sultani Çekirdeksiz)",
+      "step_4": "Toplanan Kasa/Kg Adedi & İşçi Sayısı Girişi"
+    },
+    "kantar_auto_calculation": {
+      "formula": "Net Ağırlık = Brüt Ağırlık (Kamyon+Yük) - Dara (Boş Kamyon) - Fire Kasa Ağırlığı",
+      "auto_field": "Net Ağırlık Otomatik Hesaplanır & Fiş Kesilir"
+    },
+    "excel_pdf_export": {
+      "data_tables": [
+        "Cari Listesi",
+        "Kantar Fişleri",
+        "Alış Faturaları",
+        "Stok Durumu",
+        "Gider Raporu"
+      ],
+      "actions": [
+        "Excel (.xlsx) İndir",
+        "PDF Yazdır",
+        "Filtrelenmiş Veriyi Kopyala"
+      ]
+    }
+  },
+  "media_assets": {
+    "hero_vineyard": "https://images.unsplash.com/photo-1537640538966-79f369143f8f?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "green_grapes": "https://images.unsplash.com/photo-1596398267243-3e9b68ea5ad9?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "aerial_vineyard": "https://images.unsplash.com/photo-1696583536539-a37eb2e93080?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "logistics_truck": "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "instructions_to_main_agent": [
+    "Uygulamadaki tüm metinler, menü isimleri, butonlar, tablo başlıkları ve bildirimler %100 Türkçe olmalıdır.",
+    "Sol tarafta 15 menü ögesinden oluşan sabit responsive dark sidebar yapısı kullanılmalıdır.",
+    "Tüm etkileşimli elemanlara (butonlar, girdiler, modal kapatma, menü linkleri, filtreler) 'data-testid' özniteliği eklenmelidir (Örn: data-testid='kantar-yeni-fis-button').",
+    "Kantar ekranında Brüt ve Dara girildiğinde Net Kilo ve Toplam Tutar anlık otomatik hesaplanmalıdır.",
+    "Günlük Takip ekranında Cari seçildiğinde o cariye ait Bahçeler açılır menüde dinamik olarak filtrelenmelidir.",
+    "Raporlar ekranında Excel ve PDF indirme butonları yer almalı, simüle edilmiş veri indirme aksiyonları sunulmalıdır.",
+    "Koyu kurumsal tema için koyu gri/obsidyen zemin (#0B0F17) üzerine %2 şeffaf iç çizgi (border-slate-800) ve şık burgundy (#8B1E3F) veya emerald accent vurgular kullanılmalıdır."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": {
+    "testing_attribute": "Every interactive and key informational element MUST include data-testid in kebab-case format.",
+    "animations": "Use framer-motion micro-interactions for sidebar collapse, tab transitions, modal entrances, and toast notifications.",
+    "contrast": "Text must meet APCA/WCAG AA standards on dark surfaces. Muted text should be slate-400 (#9CA3AF) minimum.",
+    "numbers": "Always format monetary amounts with Turkish Lira symbol '₺' and thousands separators (e.g. 1.250.000 ₺). Use 'kg' and 'Ton' for weights."
+  }
+}

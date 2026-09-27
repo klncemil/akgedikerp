@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+    :root {
+        --background: 220 39% 6%;
+        --foreground: 220 14% 96%;
+        --card: 221 39% 11%;
+        --card-foreground: 220 14% 96%;
+        --popover: 221 39% 11%;
+        --popover-foreground: 220 14% 96%;
+        --primary: 342 64% 33%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 215 28% 17%;
+        --secondary-foreground: 220 14% 96%;
+        --muted: 215 28% 17%;
+        --muted-foreground: 220 9% 65%;
+        --accent: 215 28% 17%;
+        --accent-foreground: 220 14% 96%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 217 19% 24%;
+        --input: 217 19% 24%;
+        --ring: 342 64% 45%;
+        --chart-1: 160 84% 39%;
+        --chart-2: 342 64% 40%;
+        --chart-3: 38 92% 50%;
+        --chart-4: 217 91% 60%;
+        --chart-5: 271 81% 66%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    h1, h2, h3, h4, .font-heading {
+        font-family: 'Outfit', sans-serif;
+    }
+    .font-mono-nums {
+        font-family: 'JetBrains Mono', monospace;
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(217 19% 24%); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(217 19% 34%); }
+
+.grape-gradient {
+    background: radial-gradient(circle at 20% 20%, rgba(139,30,63,0.18), transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(16,185,129,0.10), transparent 45%);
+}
