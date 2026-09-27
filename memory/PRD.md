@@ -32,5 +32,8 @@ Türkçe, modern, kurumsal bir web tabanlı tarım & üzüm ticareti ERP sistemi
 - P1: shadcn tarih seçici (native date input yerine), ödeme planı (%40 peşin/%60 vadeli) detaylı takvim.
 - P2: Dialog a11y açıklamaları; kullanıcı yönetimi (çoklu kullanıcı/rol); gelişmiş rapor filtreleri (tarih aralığı).
 
+## Bug Fixes
+- 2026-06: Dashboard `removeChild`/`NotFoundError` crash — root cause was browser auto-translation of the Turkish UI moving text nodes out from under React. Fixed by setting `lang="tr" translate="no" class="notranslate"` on `<html>` and `#root`, plus `<meta name="google" content="notranslate">`. Verified crash-free.
+
 ## Test Credentials
 - cemil63@gmail.com / akgedik2026 (admin)
